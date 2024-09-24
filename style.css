@@ -1,0 +1,96 @@
+h1 {
+    background-color: yellow;
+}
+
+#BIG {
+    --big-width: 800px;
+    width: var(--big-width);
+    height: 600px;
+    left: 100px;
+    position: absolute;
+}
+
+#display {
+    display: flex;
+    flex: row;
+    justify-content: right;
+    flex-wrap: wrap;
+    height: 100px;
+}
+#start_area {
+    display: flex;
+    height: 50px;;
+    width: var(--big-width);
+    justify-content: right;
+}
+
+#start {
+    width: 100px;
+    font-size: 200%;
+
+
+}
+
+#display_time {
+    var(--big-width);
+    font-size: 150%;
+}
+
+
+
+#main {
+    display: flex;
+    height: 300px;
+    flex-wrap: wrap;
+
+}
+#wani {
+    position: relative;
+    background-color: rgb(244, 243, 174);
+
+    flex-grow: 1;
+    height: 300px;
+    z-index: 1;
+
+}
+
+#man {
+    position: relative;
+    width: 75px;
+    background-color: rgb(174, 231, 244);
+
+    z-index: 0;
+}
+
+#img_neko {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+
+#message {
+    /*position: relative;*/
+    width: var(--big-width);
+    height: 80px;
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+}
+
+#display_getr {
+    width: var(--big-width);
+    height: 100px;
+    display: flex;
+    font-size: 150%;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#display_get {
+    font-size: 150%;
+}
+
+
+
+
