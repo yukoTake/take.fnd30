@@ -1,49 +1,89 @@
+
+
 h1 {
     background-color: yellow;
+    align-content: center;
 }
 
-#BIG {
+
+
+#display_area {
     --big-width: 800px;
     width: var(--big-width);
-    height: 600px;
+    height: 650px;
     left: 100px;
     position: absolute;
 }
 
-#display {
+#display_left {
+    --display-height: 150px;
     display: flex;
-    flex: row;
-    justify-content: right;
+    flex-flow: row; 
+    justify-content: space-between;
     flex-wrap: wrap;
-    height: 100px;
+    height: var(--display-height);
 }
-#start_area {
+
+#display_right {
     display: flex;
-    height: 50px;;
-    width: var(--big-width);
-    justify-content: right;
+    flex-flow: column;
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+#start_area {
+    height: 50%;
+    display: flex;
+    align-items: flex-end;
 }
 
 #start {
+
     width: 100px;
     font-size: 200%;
+    bottom: height;
+}
 
-
+#display_timer {
+    height: 50%;
 }
 
 #display_time {
-    var(--big-width);
+    /*width: var(--big-width);*/
     font-size: 150%;
+    color: red;
+    font-weight: bold;
 }
 
 
+#kumo {
+    position: relative;
+    height: var(--display-height);
+}
 
-#main {
+#img_kumo {
+    height: var(--display-height);
+}
+
+#display_get {
+    position: absolute;
+    font-size: 150%;
+    top: 40%;
+    color: grey;
+    font-weight: bold;
+
+    left: 83%;
+}
+
+#main_area {
     display: flex;
     height: 300px;
     flex-wrap: wrap;
 
 }
+
 #wani {
     position: relative;
     background-color: rgb(244, 243, 174);
@@ -51,10 +91,9 @@ h1 {
     flex-grow: 1;
     height: 300px;
     z-index: 1;
-
 }
 
-#man {
+#neko {
     position: relative;
     width: 75px;
     background-color: rgb(174, 231, 244);
@@ -68,6 +107,12 @@ h1 {
     position: absolute;
 }
 
+#img_neko_dead {
+    /*display: none;*/
+    width: "60px";
+    visibility: hidden;
+    position: absolute;
+}
 
 #message {
     /*position: relative;*/
@@ -76,21 +121,7 @@ h1 {
     font-size: 200%;
     display: flex;
     justify-content: center;
+    font-family: "meiryo";
+    /*font-weight: bold;*/
 }
-
-#display_getr {
-    width: var(--big-width);
-    height: 100px;
-    display: flex;
-    font-size: 150%;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-#display_get {
-    font-size: 150%;
-}
-
-
-
 
