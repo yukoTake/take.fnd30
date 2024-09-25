@@ -110,7 +110,7 @@ h1 {
 #img_neko_dead {
     /*display: none;*/
     width: 60px;
-    visibility: hidden;
+    /*visibility: hidden;*/
     position: absolute;
 }
 
