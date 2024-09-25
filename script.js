@@ -4,6 +4,7 @@ const elmManArea = document.getElementById("main");
 const elmMessage = document.getElementById("message");//メッセージ
 const elmNeko = document.getElementById("img_neko");//ネコ
 const elmNekoDead = document.getElementById("img_neko_dead")//ネコDead
+const elmFish = document.getElementById("fish");
 
 const elmStartBtn = document.getElementById("start");//スタートボタン
 const elmKumo = document.getElementById("kumo")//雲
@@ -53,7 +54,12 @@ let intervalItem;
 
 //neko
 const nekoSize = 50;
+const nekoBig = 1.7;//アイテムでネコサイズアップする時の比率
 let elmNekoTop = 0;
+elmNeko.width = nekoSize + "px";
+
+//fish
+elmFish.style.left = nekoSize * nekoBig - elmFish.clientWidth + "px";
 
 
 //timer------------------------------------------------------------
@@ -65,7 +71,8 @@ elmDisplayTime.textContent = "--";
 elmDisplayWani.textContent = "";
 
 const timer = madeTimer();
-const start = elmStartBtn.addEventListener("click", timer, false);
+const start = elmStartBtn.addEventListener('mousedown', timer, false);
+//const start = elmStartBtn.addEventListener("click", timer, false);
 
 //TIMER
 function madeTimer() {
@@ -110,15 +117,18 @@ function madeTimer() {
 
     function moveTimer() {
 
-        if (time <= 0) {
+        if (time <= 1) {
 
             clearInterval(intervalTimer);
             clearInterval(madeWaniInterval);
             isTimerMove = false;
             time --;
             if (isRes) {
+                time = 0;
+                elmDisplayTime.textContent = time;
                 elmMessage.textContent = "🩷YOU WIN🩷";
                 elmMessage.style.fontSize = "300%"
+
             };
             enableScroll();
 
@@ -130,35 +140,28 @@ function madeTimer() {
                 elmMessage.textContent = "ちょっとスピードアップするよ！";
                 //let nowAddLeftWani = addLeftWani * 2;//ワニ進度 px
                 let nowWaniIntervalSec = Math.floor( waniIntervalSec * 0.8);//ワニ進行頻度 s
-                let nowMadeWaniSec = Math.floor(madeWaniSec * 0.5)//算出頻度 s
+                let nowMadeWaniSec = Math.floor(madeWaniSec * 0.6)//算出頻度 s
 
                 clearInterval(madeWaniInterval);
                 madeWaniInterval = setInterval(() => {
-                    let waniSan = madeWani(nowWaniIntervalSec, addLeftWani);
-                    waniSan();
+                    madeWani(nowWaniIntervalSec, addLeftWani)();
+
                 }, nowMadeWaniSec)
 
                 //アイテム算出
                 madeItem()();
-                //itemSan();
 
             } else if (time === Math.floor(timerLimit * 0.4)) {
                 elmMessage.textContent = "ワニ大増殖！！";
                 //let nowAddLeftWani = addLeftWani * 2;//ワニ進度 px
                 let nowWaniIntervalSec = Math.floor( waniIntervalSec * 0.8);//ワニ進行頻度 s
-                let nowMadeWaniSec = Math.floor(madeWaniSec * 0.3)//算出頻度 s
+                let nowMadeWaniSec = Math.floor(madeWaniSec * 0.4)//算出頻度 s
 
                 clearInterval(madeWaniInterval);
                 madeWaniInterval = setInterval(() => {
                     madeWani(nowWaniIntervalSec, addLeftWani)();
-                    //waniSan();
+
                 }, nowMadeWaniSec)
-
-            }
-
-            if (isItem) {
-                elmNeko.style.width = nekoSize * 1.7 + "px"
-                elmNeko.style.height = nekoSize * 1.7 + "px"
             }
         }
     }
@@ -205,6 +208,7 @@ function madeWani(nowWaniIntervalSec, nowAddLeftWani) {
         newElm.style.position = "absolute";
 
         newElm.textContent = "🐊";
+        newElm.style.transform =  "scaleX(-1)";
         newElm.style.fontSize = "130%";
         newElm.style.top = elmTop + "px";
         newElm.style.left = "0px";
@@ -231,6 +235,7 @@ function madeWani(nowWaniIntervalSec, nowAddLeftWani) {
                 elmMessage.style.fontSize = "300%"
                 time = 0;
 
+                elmFish.style.visibility = "hidden";
                 madeDeadNeko()();
             }
 
@@ -269,7 +274,7 @@ function madeDeadNeko() {
         } else {
             elmTop -= 5;
             elmLeft += 2;
-            console.log(elmTop,elmLeft);
+
             elmNekoDead.style.top = elmTop + "px";
             elmNekoDead.style.left = elmLeft + "px";
             deadNekoCount += 1;
@@ -295,6 +300,7 @@ function resetArrElm() {
 
     elmNeko.style.visibility = "visible";
     elmNekoDead.style.visibility = "hidden";
+    elmFish.style.visibility = "hidden";
 }
 
 
@@ -365,13 +371,20 @@ function madeAttack(isTop) {
             } else {
                 //アイテムゲット時
 
-                if (itemArr[0] !== undefined && itemArr[0].left >= elmLeft &&
-                        itemArr[0].top > elmTop -itemElmSize/3  && itemArr[0].top < elmTop + itemElmSize/3) {
 
-                    newElm.left = itemArr[0].left
-                    newElm.top = itemArr[0].top + addTopAtt;
+                if (itemArr[0] !== undefined && itemArr[0].left >= elmLeft - 10 &&
+                        itemArr[0].top > elmTop -itemElmSize/2  && itemArr[0].top < elmTop + itemElmSize/3) {
+
+                    newElm.style.left = itemArr[0].left
+                    newElm.style.top = itemArr[0].top + addTopAtt;
                     newElm.textContent = "🩷";
                     newElm.style.fontSize = "200%";
+
+                    elmFish.style.visibility = "visible";
+
+                    elmNeko.style.width = nekoSize * nekoBig + "px"
+                    elmNeko.style.height = nekoSize * nekoBig + "px"
+
                     isItem = true;
 
                     itemArr.splice(0);
@@ -385,15 +398,11 @@ function madeAttack(isTop) {
                     setTimeout(function() {
                         newElm.remove();
                     }, 400);
-
                 }
-
             }
-
         }
             attArr[thisAttCount] = ({id: thisAttCount, left: elmLeft, top: elmTop});
         }
-
     return startAttack;
 }
 
@@ -460,6 +469,7 @@ function madeItem() {
         newElm.style.position = "absolute";
 
         newElm.textContent = "🐟";
+        newElm.style.transform =  "scaleX(-1)";
         newElm.style.fontSize = "160%";
         newElm.style.top = elmTop + "px";
         newElm.style.left = "0px";
@@ -495,6 +505,7 @@ document.addEventListener("keydown", function(event) {
             if (elmNekoTop < waniAriaHeight - elmNeko.height) {
                 elmNekoTop += nekoMovePx
                 elmNeko.style.top = elmNekoTop + "px";
+                elmFish.style.top = elmNekoTop + nekoSize/2 + "px";
             }
             break;
 
@@ -502,20 +513,18 @@ document.addEventListener("keydown", function(event) {
             if(elmNekoTop > 0) {
                 elmNekoTop -= nekoMovePx
                 elmNeko.style.top = elmNekoTop + "px";
+                elmFish.style.top = elmNekoTop + nekoSize/2 + "px";
             }
             break;
 
         case "Enter":
-
-            if (!isItem) {
-                let attack = madeAttack(false);
-                attack();
-            } else {
-                let attack_hand = madeAttack(false);
-                attack_hand();
-
-                let attack_kick = madeAttack(true);
-                attack_kick();
+            if (elmNeko.style.visibility === "visible") {
+                if (!isItem) {
+                    madeAttack(false)();
+                } else {
+                    madeAttack(false)();
+                    madeAttack(true)();
+                }
             }
             break;
     }
