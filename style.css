@@ -1,81 +1,37 @@
 
 body {
-    width: 1000px;
+    --body-width: 1000px;
+    width: var(--body-width);
+    margin-left: 50px;
 }
-
 
 h1 {
     background-color: yellow;
     text-align: center;
 }
 
-
-
 #display_area {
-    --big-width: 800px;
-    width: var(--big-width);
-    height: 650px;
-    left: 100px;
-    position: absolute;
-}
-
-#display_left {
     --display-height: 150px;
-    display: flex;
-    flex-flow: row; 
-    justify-content: space-between;
-    flex-wrap: wrap;
-
+    width: var(--body-width);
     height: var(--display-height);
+    /*left: 100px;
+    position: absolute;*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+    justify-content: space-between;
+
 }
 
-#display_right {
+
+/*左側　雲エリア*/
+#display_left {
+    position: relative;
     display: flex;
     flex-flow: column;
-    width: 200px;
-
-    justify-content: space-between;
     flex-wrap: wrap;
-    align-items: flex-end;
-
-}
-
-#start_area {
-    height: 50%;
-    display: flex;
-    align-items: flex-end;
-}
-
-#start {
-
-    width: 100px;
-    font-size: 200%;
-
-
-    background-color: rgb(220, 222, 225);
-    border-radius: 10px;
-    border-color: rgb(150, 149, 149);
-    border-bottom-color: black;
-    border-width: 5px;
-
-
-}
-
-#display_timer {
-    height: 50%;
-}
-
-#display_time {
-    /*width: var(--big-width);*/
-    font-size: 150%;
-    color: red;
-    font-weight: bold;
-}
-
-
-#kumo {
-    position: relative;
-    height: var(--display-height);
+    justify-content: right;
+    width: 400px;
 }
 
 #img_kumo {
@@ -92,19 +48,68 @@ h1 {
     left: 83%;
 }
 
+
+
+/*右側　ボタンタイムエリア*/
+#display_right {
+    display: flex;
+    flex-flow: column;
+    width: 200px;
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+#start_area {
+    height: 50%;
+    display: flex;
+    align-items: flex-end;
+}
+
+#start {
+    width: 100px;
+    font-size: 200%;
+
+    background-color: rgb(220, 222, 225);
+    border-radius: 10px;
+    border-color: rgb(150, 149, 149);
+    border-bottom-color: black;
+    border-width: 5px;
+}
+
+#display_timer {
+    height: 50%;
+}
+
+#display_time {
+    /*width: var(--big-width);*/
+    font-size: 150%;
+    color: red;
+    font-weight: bold;
+}
+
+/*
+#kumo {
+    position: relative;
+    height: var(--display-height);
+}*/
+
+
+/*メイン　ワニ出現エリア*/
 #main_area {
     display: flex;
+    flex-flow: row;
     height: 300px;
     flex-wrap: wrap;
-
 }
 
 #wani {
     position: relative;
     background-color: rgb(244, 243, 174);
-
+    /*width:500px;*/
     flex-grow: 1;
-    height: 300px;
+    /*height: 300px;*/
     z-index: 1;
 }
 
@@ -130,19 +135,20 @@ h1 {
 }
 
 #fish {
-    visibility: hidden;
     position: absolute;
+    visibility: hidden;
     font-size: 200%;
 }
 
 
 #message {
     /*position: relative;*/
-    width: var(--big-width);
+    /*width: var(--big-width);*/
     height: 80px;
     font-size: 200%;
-    display: flex;
-    justify-content: center;
+    /*display: flex;
+    justify-content: center;*/
+    text-align: center;
     font-family: "meiryo";
     /*font-weight: bold;*/
 }
