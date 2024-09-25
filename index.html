@@ -5,30 +5,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
-
+  <link rel="stylesheet" type = "text/css" href="style.css">
   <!--img id="img_dead" src="image/dead.png"-->
 
 </head>
 
 <body>
-  <h1>WANI WANI</h1>
-  <div id="BIG">
-    <div id="display">
+  <h1> 🐊WANI WANI🐊</h1>
+  <div id="display_area">
+
+    <div id="display_left">
+      <div id="kumo" >
+        <img id="img_kumo" src="image/kumo.png">
+      <div id="display_get">w</div>
+    </div>
+
+    <div id="display_right">
       <div id="start_area"><input id="start" type="button" value="start"></div>
       <div id="display_timer">TIME： <em id="display_time"></em> 秒</div>
-
     </div>
 
-    <div id="main">
-      <div id="wani"></div>
-      <div id="man"><img id="img_neko" src="neko.png" width="50px"></div>
-      <div id="message"></div>
-      <div id="display_getr">GET WANI：  <em id="display_get"></em></div>
-    </div>
   </div>
 
+  <div id="main_area">
+    <div id="wani"></div>
+    <div id="neko">
+      <img id="img_neko" src="neko.png">
+      <img id="img_neko_dead" src="dead.png">
+    </div>
+    <div id="message"></div>
+    <!--div id="display_getr">GET WANI：  <em id="display_get"></em></div-->
 
-  <link rel="stylesheet" type = "text/css" href="style.css">
+  </div>
+</div>
+
+
+
   <script type="text/javascript" src="script.js"></script>
 </body>
 
