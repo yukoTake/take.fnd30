@@ -7,7 +7,7 @@ const elmNekoDead = document.getElementById("img_neko_dead")//ネコDead
 const elmFish = document.getElementById("fish");
 
 const elmStartBtn = document.getElementById("start");//スタートボタン
-const elmKumo = document.getElementById("kumo")//雲
+const elmKumo = document.getElementById("display_left")//左（雲）エリア
 /*
 window.onload = function(){
     elmNeko = document.getElementById("img_neko");
@@ -288,7 +288,7 @@ function resetArrElm() {
     const elmWanis = document.getElementById("wani").children;
     Array.from(elmWanis).forEach(elm => elm.remove());
 
-    const elmDead = document.getElementById("kumo").children;
+    const elmDead = document.getElementById("display_left").children;
     Array.from(elmDead).forEach(elm => {
         if (elm.id.slice(0,4) == "dead") {
             elm.remove();
