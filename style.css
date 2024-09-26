@@ -3,6 +3,7 @@ body {
     --body-width: 1000px;
     width: var(--body-width);
     margin-left: 50px;
+    font-family: Verdana, 'BIZ UDGothic',  sans-serif;
 }
 
 h1 {
@@ -14,8 +15,6 @@ h1 {
     --display-height: 150px;
     width: var(--body-width);
     height: var(--display-height);
-    /*left: 100px;
-    position: absolute;*/
     display: flex;
     flex-wrap: wrap;
     flex-flow: row;
@@ -44,7 +43,6 @@ h1 {
     top: 50%;
     color: grey;
     font-weight: bold;
-
     left: 83%;
 }
 
@@ -55,7 +53,6 @@ h1 {
     display: flex;
     flex-flow: column;
     width: 200px;
-
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -74,7 +71,7 @@ h1 {
     background-color: rgb(220, 222, 225);
     border-radius: 10px;
     border-color: rgb(150, 149, 149);
-    border-bottom-color: black;
+
     border-width: 5px;
 }
 
@@ -88,12 +85,6 @@ h1 {
     color: red;
     font-weight: bold;
 }
-
-/*
-#kumo {
-    position: relative;
-    height: var(--display-height);
-}*/
 
 
 /*メイン　ワニ出現エリア*/
@@ -128,8 +119,14 @@ h1 {
 
 }
 
+#img_up {
+    width: 70px;
+    visibility: hidden;
+    position: absolute;
+}
+
 #img_neko_dead {
-    width: 60px;
+    width: 70px;
     visibility: hidden;
     position: absolute;
 }
@@ -142,14 +139,9 @@ h1 {
 
 
 #message {
-    /*position: relative;*/
-    /*width: var(--big-width);*/
     height: 80px;
-    font-size: 200%;
-    /*display: flex;
-    justify-content: center;*/
+    font-size: 150%;
     text-align: center;
-    font-family: "meiryo";
-    /*font-weight: bold;*/
+
 }
 
