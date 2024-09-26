@@ -5,21 +5,21 @@ const elmMessage = document.getElementById("message");//メッセージ
 const elmNeko = document.getElementById("img_neko");//ネコ
 const elmNekoDead = document.getElementById("img_neko_dead")//ネコDead
 const elmFish = document.getElementById("fish");
+const elmUp = document.getElementById("img_up");//レベルアップ吹き出し
 
 const elmStartBtn = document.getElementById("start");//スタートボタン
 const elmKumo = document.getElementById("display_left")//左（雲）エリア
+
+const elmWaniArea = document.getElementById("wani");//ワニ繁殖エリア
+const waniAriaWidth = elmWaniArea.clientWidth;
+const waniAriaHeight = elmWaniArea.clientHeight;
+
 /*
 window.onload = function(){
     elmNeko = document.getElementById("img_neko");
     //elmManArea.appendChild(elmNeko);
 }
     */
-
-const elmWaniArea = document.getElementById("wani");//ワニ繁殖エリア
-const waniAriaWidth = elmWaniArea.clientWidth;
-const waniAriaHeight = elmWaniArea.clientHeight;
-
-
 
 //Common----------------------------------------------------------
 
@@ -58,8 +58,9 @@ const nekoBig = 1.7;//アイテムでネコサイズアップする時の比率
 let elmNekoTop = 0;
 elmNeko.width = nekoSize + "px";
 
-//fish
+//fish,up
 elmFish.style.left = nekoSize * nekoBig - elmFish.clientWidth + "px";
+elmUp.style.left = nekoSize * nekoBig + "px";
 
 
 //timer------------------------------------------------------------
@@ -70,9 +71,10 @@ const elmDisplayWani = document.getElementById("display_get");//獲得ワニ数�
 elmDisplayTime.textContent = "--";
 elmDisplayWani.textContent = "";
 
-const timer = madeTimer();
-const start = elmStartBtn.addEventListener('mousedown', timer, false);
-//const start = elmStartBtn.addEventListener("click", timer, false);
+//const timer = madeTimer();
+// const start = elmStartBtn.addEventListener('mousedown', madeTimer()(), false);
+elmStartBtn.addEventListener('mousedown', function() {madeTimer()()}, false);
+
 
 //TIMER
 function madeTimer() {
@@ -395,9 +397,14 @@ function madeAttack(isTop) {
                     clearInterval(intervalAtt);
                     attArr[thisAttCount] = null;
 
+                    elmUp.style.visibility = "visible";
                     setTimeout(function() {
                         newElm.remove();
                     }, 400);
+
+                    setTimeout(function() {
+                        elmUp.style.visibility = "hidden";
+                    }, 2500);
                 }
             }
         }
@@ -506,6 +513,7 @@ document.addEventListener("keydown", function(event) {
                 elmNekoTop += nekoMovePx
                 elmNeko.style.top = elmNekoTop + "px";
                 elmFish.style.top = elmNekoTop + nekoSize/2 + "px";
+                elmUp.style.top = elmNekoTop + "px";
             }
             break;
 
@@ -514,6 +522,7 @@ document.addEventListener("keydown", function(event) {
                 elmNekoTop -= nekoMovePx
                 elmNeko.style.top = elmNekoTop + "px";
                 elmFish.style.top = elmNekoTop + nekoSize/2 + "px";
+                elmUp.style.top = elmNekoTop + "px";
             }
             break;
 
