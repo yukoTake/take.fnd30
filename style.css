@@ -1,6 +1,6 @@
 
 body {
-    --body-width: 1000px;
+    --body-width: 800px;
     width: var(--body-width);
     margin-left: 50px;
     font-family: Verdana, 'BIZ UDGothic',  sans-serif;
@@ -47,13 +47,28 @@ h1 {
     left: 83%;
 }
 
+/*中間　メッセージエリア*/
+#display_middle {
+    color: blue;
+    font-weight: bold;
+    text-align: center;
+    align-self: flex-end;
+    padding-bottom: 10px;
+    flex-grow: 1;
+    visibility: hidden;
+    animation: blinking 0.5s ease-in-out infinite alternate;
+}
 
+@keyframes blinking {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
 
 /*右側　ボタンタイムエリア*/
 #display_right {
     display: flex;
     flex-flow: column;
-    width: 200px;
+    width: 150px;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -99,7 +114,7 @@ h1 {
 
 #wani {
     position: relative;
-    background: linear-gradient(0deg, rgb(208, 255, 105),rgb(244, 243, 174) );
+    background: linear-gradient(0deg, rgb(239, 255, 105),rgb(255, 254, 207) );
     flex-grow: 1;
     z-index: 1;
     border-radius: 5px;
@@ -108,9 +123,20 @@ h1 {
 #neko {
     position: relative;
     width: 75px;
-    background: linear-gradient(0deg, rgb(174, 231, 244),  rgb(218, 245, 250));
+    background: linear-gradient(0deg, rgb(174, 231, 244),  rgb(235, 251, 251));
+    animation: none;
     border-radius: 5px;
     z-index: 0;
+    background-size: 100% 100%;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 100% 0%; /* スタート位置を上右に */
+    }
+    100% {
+        background-position: 100% 100%; /* 終了位置を下右に */
+    }
 }
 
 #img_neko {
@@ -121,7 +147,7 @@ h1 {
 }
 
 #img_up {
-    width: 70px;
+    width: 110px;
     visibility: hidden;
     position: absolute;
 }
@@ -143,6 +169,12 @@ h1 {
     height: 80px;
     font-size: 150%;
     text-align: center;
+    padding-top: 5px;
 
 }
 
+mark {
+    color: red;
+    font-weight: bolder;
+    background: linear-gradient(0deg, rgb(251, 177, 127) , rgba(0,0,0,0));
+}
