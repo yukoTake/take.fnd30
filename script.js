@@ -9,7 +9,8 @@ const elmFish = document.getElementById("fish");
 const elmUp = document.getElementById("img_up");//レベルアップ吹き出し
 const elmItemMessage = document.getElementById("display_middle");//アイテム出現メッセージエリア
 
-const elmStartBtn = document.getElementById("start");//スタートボタン
+const elmStartBtn = document.getElementById("btn");//スタートボタン
+// const elmStartBtn = document.getElementsByClassName("btn")[0];//スタートボタン
 const elmKumo = document.getElementById("display_left")//左（雲）エリア
 
 const elmWaniArea = document.getElementById("wani");//ワニ繁殖エリア
@@ -26,6 +27,10 @@ let getWani = 0;//獲得ワニ数
 let time = 0 ;//残り時間
 let isRes; //ゲーム結果
 let isTimerMove = false;
+
+//buttn
+const btnMotoBorder = elmStartBtn.style.borderBottom;
+
 
 //wani
 const addLeftWani = 10;//ワニ進度(px)
@@ -70,7 +75,8 @@ const elmDisplayWani = document.getElementById("display_get");//獲得ワニ数�
 setElm({elm: elmDisplayTime, text: "--"});
 setElm({elm: elmDisplayWani, text: ""});
 
-elmStartBtn.addEventListener('mousedown', function() {madeTimer()()}, false);
+elmStartBtn.addEventListener("mousedown", function() {madeTimer()()}, false);
+// elmStartBtn.addEventListener("mousedown", function() {madeTimer()()}, false);
 
 
 //TIMER
@@ -80,6 +86,8 @@ function madeTimer() {
 
     function startTimer() {
         if (!isTimerMove) {
+
+            elmStartBtn.style.borderBottom = "2px solid gray";
             time = timerLimit;
             disableScroll();
             winCangeBackGround();
@@ -92,7 +100,7 @@ function madeTimer() {
             waniCount = -1;
             attCount = -1;
 
-            setElm({elm: elmMessage, text: "ワニを撃退しよう、ヨシ", fontsize: 150});
+            setElm({elm: elmMessage, text: "ワニを撃退しよう、ヨシ", fontsize: 140});
             setElm({elm: elmNeko, width: nekoSize, height: nekoSize});
             setElm({elm: elmDisplayTime, text: time});
             setElm({elm: elmDisplayWani, text: getWani});
@@ -114,6 +122,7 @@ function madeTimer() {
                 setElm({elm: elmDisplayTime, text: time});
                 setElm({elm: elmMessage, text: "🩷YOU WIN🩷", fontsize: 300});
                 winCangeBackGround();
+                elmStartBtn.style.borderBottom = btnMotoBorder;
             };
 
 
@@ -122,15 +131,15 @@ function madeTimer() {
             setElm({elm: elmDisplayTime, text: time});
 
             if (time === Math.floor(timerLimit * 0.8)) {
-                setElm({elm: elmMessage, text: "ちょっとスピードアップするよ！"});
+                //setElm({elm: elmMessage, text: "ちょっとスピードアップするよ！"});
                 clearInterval(madeWaniInterval);
-                madeWaniInterval = setInterval(function(){madeWani(1.2)()}, Math.floor(madeWaniSec * 0.8))
+                madeWaniInterval = setInterval(function(){madeWani(1)()}, Math.floor(madeWaniSec * 0.8))
                 madeItem()();//アイテム算出
 
             } else if (time === Math.floor(timerLimit * 0.4)) {
                 setElm({elm: elmMessage, text: "ワニ大増殖！！"});
                 clearInterval(madeWaniInterval);
-                madeWaniInterval = setInterval(function(){madeWani(1.2)()}, Math.floor(madeWaniSec * 0.5));
+                madeWaniInterval = setInterval(function(){madeWani(1.1)()}, Math.floor(madeWaniSec * 0.7));
             }
         }
     }
@@ -193,7 +202,6 @@ function madeWani(addLeft) {
     }
 
     function moveWani() {
-
         if (waniArr[thisWaniCount] === null) {
             clearInterval(intervalWani);
 
@@ -211,6 +219,7 @@ function madeWani(addLeft) {
                 setElm({elm: elmUp, visible: "hidden"});
                 setElm({elm: elmNeko, visible: "hidden"})
                 madeDeadNeko()();
+                elmStartBtn.style.borderBottom = btnMotoBorder;
             }
 
         } else {
@@ -397,11 +406,9 @@ function madeItem() {
         setElm({elm: elmItemMessage, visible: "visible"});
         setElm({elm: newElm, top: elmTop, left: elmLeft, width: elmSize * 0.5, height: elmSize * 0.5,
             position: "absolute", text: "🐟", transform: "scaleX(-1)", fontsize: 160})
-            console.log(elmLeft)
     }
 
     function moveItem() {
-        console.log(elmLeft)
         if (time <= 0 || elmLeft > waniAriaWidth - elmSize) {
             clearInterval(intervalItem);
             newElm.remove();
@@ -424,7 +431,6 @@ function madeItem() {
 //NEKO_MOVE------------------------------------------------------------
 document.addEventListener("keydown", function(event) {
     const nekoMovePx = 10;
-
     switch (event.key) {
         case  "ArrowDown":
             if (elmNekoTop < waniAriaHeight - elmNeko.height) {
@@ -446,7 +452,7 @@ document.addEventListener("keydown", function(event) {
             }
             break;
 
-        case "Enter":
+        case " "://"Enter":
             if (elmNeko.style.visibility === "visible") {
                 if (!isItem) {
                     madeAttack(false)();
