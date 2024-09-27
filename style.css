@@ -7,10 +7,42 @@ body {
 }
 
 h1 {
-    background-color: yellow;
+    display: flex;
+    background: -webkit-radial-gradient( rgb(241, 240, 240) 20%,rgb(119, 119, 119));
+    
     text-align: center;
+    align-content: center;
+
     border-radius: 5px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: gray;
+    text-shadow: 
+    0 0 0.04em #FFF59D,
+    0 0 0.06em #FFF59D,
+    0 0 0.08em #FFF59D,
+    0 0 0.10em #FFF59D,
+    0 0 0.20em #FFF59D,
+    0 0 0.30em #FFF59D,
+    0 0 0.50em #FFF59D;
 }
+
+#rotate_wani {
+    animation: rotation 6s linear infinite;
+    display: inline-block;
+    font-size: 70%;
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
 #display_area {
     --display-height: 150px;
@@ -50,6 +82,7 @@ h1 {
 /*中間　メッセージエリア*/
 #display_middle {
     color: blue;
+    font-size: 115%;
     font-weight: bold;
     text-align: center;
     align-self: flex-end;
@@ -80,16 +113,37 @@ h1 {
     align-items: flex-end;
 }
 
-#start {
-    width: 100px;
-    font-size: 200%;
+#btn {
+    height: 50%;
+    display: grid;
 
-    /*background-color: rgb(220, 222, 225);*/
-    background: radial-gradient(rgb(220, 222, 225),rgb(163, 163, 163));
-    border-radius: 10px;
-    border-color: rgb(150, 149, 149);
+    font-size: 170%;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    width: 140px;
+    height: 40px;
 
-    border-width: 5px;
+    border-radius: 0.8rem;
+
+    /*color-------------------------------------*/
+    background: -webkit-radial-gradient( rgb(241, 240, 240) 20%,rgb(119, 119, 119));
+    border-bottom: 8px solid rgb(119, 119, 119);
+
+    color: gray;
+    text-shadow: 
+    0 0 0.04em #FFF59D,
+    0 0 0.06em #FFF59D,
+    0 0 0.08em #FFF59D,
+    0 0 0.10em #FFF59D,
+    0 0 0.20em #FFF59D,
+    0 0 0.30em #FFF59D,
+    0 0 0.50em #FFF59D;
+}
+
+#btn:hover {
+    margin-top: 3px;
+    border-bottom: 6px solid rgb(112, 112, 112);
 }
 
 #display_timer {
@@ -97,7 +151,6 @@ h1 {
 }
 
 #display_time {
-    /*width: var(--big-width);*/
     font-size: 150%;
     color: red;
     font-weight: bold;
@@ -167,7 +220,8 @@ h1 {
 
 #message {
     height: 80px;
-    font-size: 150%;
+    font-size: 120%;
+    font-weight: bold;
     text-align: center;
     padding-top: 5px;
 
